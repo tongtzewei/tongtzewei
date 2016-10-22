@@ -1,0 +1,23 @@
+{
+  "name": "tongtzewei",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tongtzewei/tongtzewei.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tongtzewei/tongtzewei/issues"
+  },
+  "homepage": "https://github.com/tongtzewei/tongtzewei#readme",
+  "dependencies": {
+    "botbuilder": "^3.3.3",
+    "restify": "^4.1.1"
+  }
+}
