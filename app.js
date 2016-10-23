@@ -27,14 +27,14 @@ bot.dialog('/', [
     function (session, results){
   //    session.send('Hello %s!',session.userData.name);
         builder.Prompts.text(session, 'Hello ' + session.userData.name);
-        builder.Prompts.number(session, 'How many years have your been coding?');
-        session.userData.coding = results.response;
+        builder.Prompts.number(session, 'How many years have your been coding?');        
     },
   //  function (session, results){
   //    builder.Prompts.number(session, 'How many years have your been coding?');
   //    sesssion.userData.coding = results.response;
   //  },
     function (session, results){
+        session.userData.coding = results.response;
         builder.Prompts.choice(session, 'What langguage you code', ['Java', 'JavaScript','C#']);
     },
     function (session, results){
