@@ -39,7 +39,7 @@ bot.dialog('/profile', [
     }
 ]);
 
-server.get('/', restify.serveStatic({
- directory: __dirname,
- default: '/index.html'
-}));
+//server.get('/', restify.serveStatic({
+// directory: __dirname,
+// default: '/index.html'
+//}));
