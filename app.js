@@ -37,7 +37,7 @@ bot.dialog('/', [
         builder.Prompts.choice(session, 'What langguage you code', ['Java', 'JavaScript','C#']);
     },
     function (session, results){
-        session.userData.language = results.response.entiry;
+        session.userData.language = results.response.entity;
         session.send ('Your name' + session.userData.name + session.userData.coding + session.userData.language);
     }
 ]);
