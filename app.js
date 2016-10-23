@@ -17,7 +17,7 @@ server.post('/api/messages', connector.listen());
 
 // Create bot dialogs
 bot.dialog('/', [
-    function (session, args, next){
+    function (session, next){
         if (!session.userData.name){
             session.beginDialog('/profile');
         } else {
