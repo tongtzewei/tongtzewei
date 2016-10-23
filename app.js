@@ -38,7 +38,7 @@ bot.dialog('/', [
     },
     function (session, results){
         session.userData.language = results.response.entiry;
-        session.send ('Your name' + session.userData.name + session.userData.coding + session.userData.language)
+        session.send ('Your name' + session.userData.name + session.userData.coding + session.userData.language);
     }
 ]);
 
