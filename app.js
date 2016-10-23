@@ -40,7 +40,7 @@ bot.dialog('/', [
         session.userData.language = results.response.entity;
     },
     function (session){
-        session.send ('Your name' + session.userData.name + session.userData.coding + session.userData.language);
+        session.send ('Your name ' + session.userData.name + session.userData.coding + session.userData.language);
     }
 ]);
 
