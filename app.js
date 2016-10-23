@@ -31,10 +31,10 @@ bot.dialog('/', [
 
 bot.dialog('/profile', [
     function (session){
-        builder.Prompts.text(session, 'What is your name');
+        builder.Prompts.text(session, 'What is your name?');
     },
     function(session, results){
-        session.usesData.name = results.response;
+        session.userData.name = results.response;
         session.endDialog();
     }
 ]);
