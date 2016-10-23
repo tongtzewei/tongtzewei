@@ -35,7 +35,7 @@ bot.dialog('/profile', [
     },
     function(session, results){
         session.usesData.name = results.response;
-        session.endDialog()
+        session.endDialog();
     }
 ]);
 
