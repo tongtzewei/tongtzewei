@@ -38,10 +38,11 @@ bot.dialog('/', [
     },
     function (session, results){
         session.userData.language = results.response.entity;
-    },
-    function (session,results){
         session.send ('Your name ' + session.userData.name + session.userData.coding + session.userData.language);
     }
+  //  function (session,results){
+  //      session.send ('Your name ' + session.userData.name + session.userData.coding + session.userData.language);
+  //  }
 ]);
 
 bot.dialog('/profile', [
