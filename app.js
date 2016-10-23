@@ -24,9 +24,20 @@ bot.dialog('/', [
             next();
         }
     },
-    function(session, results){
+    function (session, results){
   //    session.send('Hello %s!',session.userData.name);
-        builder.Prompts.text(session,'Hello' + session.userData.name);
+        builder.Prompts.text(session,'Hello ' + session.userData.name);
+    },
+    function (session, results){
+        builder.Prompts.number(session, 'How many years have your been coding?');
+        sesssion.userData.coding = results.response;
+    },
+    function (session, results){
+        builder.Prompts.choice(session, 'What langguage you code', ['Java', 'JavaScript','C#']);
+    },
+    function (session, results){
+        session.userData.language = results.response.entiry;
+        sesssion.send ('Your name' + sessson.userData.name + session.userData.coding + session.userData.language)
     }
 ]);
 
