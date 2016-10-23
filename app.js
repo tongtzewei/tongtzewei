@@ -25,7 +25,7 @@ bot.dialog('/', [
         }
     },
     function(session, results){
-        session.send('Hello %s!',userData.name);
+        session.send('Hello %s!',session.userData.name);
     }
 ]);
 
