@@ -26,7 +26,6 @@ bot.dialog('/', [
     },
     function (session, results){
   //    session.send('Hello %s!',session.userData.name);
-        builder.Prompts.text(session, 'Hello ' + session.userData.name);
         builder.Prompts.number(session, 'How many years have your been coding?');        
     },
   //  function (session, results){
