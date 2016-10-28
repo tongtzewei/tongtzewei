@@ -65,69 +65,6 @@ bot.dialog('/', new builder.IntentDialog()
         }
     ]));
     
-
-
-
-
-
-    ])
-
-
-
-
-
-
-    ]
-
-
-
-
-
-
-
-)
-
-
-
-bot.dialog('/', [
-    function (session, next){
-        if (!session.userData.name){
-            session.beginDialog('/profile');
-        } else {
-            next();
-        }
-    },
-    function (session, results){
-  //    session.send('Hello %s!',session.userData.name);
-        builder.Prompts.number(session, 'How many years have your been coding?');        
-    },
-  //  function (session, results){
-  //    builder.Prompts.number(session, 'How many years have your been coding?');
-  //    sesssion.userData.coding = results.response;
-  //  },
-    function (session, results){
-        session.userData.coding = results.response;
-        builder.Prompts.choice(session, 'What langguage you code', ['Java', 'JavaScript','C#']);
-    },
-    function (session, results){
-        session.userData.language = results.response.entity;
-    //    session.send ('Your name ' + session.userData.name + session.userData.coding + session.userData.language);
-    },
-    function (session){
-    //    session.send ('Your name ' + session.userData.name + session.userData.coding + session.userData.language);
-        session.send('Hello');
-}]);
-
-bot.dialog('/profile', [
-    function (session){
-        builder.Prompts.text(session, 'What is your name?');
-    },
-    function(session, results){
-        session.userData.name = results.response;
-        session.endDialog();
-    }
-]);
-
 server.get('/', restify.serveStatic({
 directory: __dirname,
 default: '/index.html'
