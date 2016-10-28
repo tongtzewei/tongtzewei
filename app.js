@@ -40,7 +40,7 @@ bot.dialog('/', new builder.IntentDialog()
             builder.Prompts.choice(
                 session, 
                 'Are you looking for a flight or a hotel?',
-                [Flights.label, Hotel.label],
+                [Flights.label, Hotels.label],
                 {
                     maxRetries : 3,
                     retryPrompt: 'Not a valid optionn'
