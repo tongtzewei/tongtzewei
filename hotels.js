@@ -43,7 +43,7 @@ module.exports = {
         function (session, results, next) {
 
  //           session.dialogData.checkIn = results.response.resolution.start;
-                session.dialogData.checkIn = builder.EntityRecognizer.resolveTime([results.response]);
+    session.dialogData.checkIn = builder.EntityRecognizer.resolveTime([results.response]);
                 next();
 
         },
@@ -74,8 +74,8 @@ module.exports = {
 
             var destination = session.dialogData.destination;
 
- //           var checkIn = new Date(session.dialogData.checkIn);
-                var checkIn = session.dialogData.checkIn;
+            var checkIn = new Date(session.dialogData.checkIn);
+ //               var checkIn = session.dialogData.checkIn;
 
             var checkOut = checkIn.addDays(session.dialogData.nights);
 
