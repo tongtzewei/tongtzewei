@@ -40,7 +40,8 @@ bot.dialog('/', new builder.IntentDialog()
             builder.Prompts.choice(
                 session, 
                 'Are you looking for a flight or a hotel?',
-                [Flights.label, Hotels.label],
+//                [Flights.label, Hotels.label],
+                    ["Hotels", "Flights"],
                 {
                     maxRetries : 3,
                     retryPrompt: 'Not a valid optionn'
@@ -59,8 +60,10 @@ bot.dialog('/', new builder.IntentDialog()
 
             var selection = result.response.entity;
             switch(selection){
-                case Fiights.label: return session.beginDialog('/flights')
-                case Hotels.Label: return session.beginDialog('/hotels')
+ //               case Fiights.label: return session.beginDialog('/flights')
+                  case "Flights": return session.beginDialog('/flights')
+ //               case Hotels.Label: return session.beginDialog('/hotels')
+                  case "Hotels" : return session.beginDialog('/hotels')
             }
         }
     ]));
