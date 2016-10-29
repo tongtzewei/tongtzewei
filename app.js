@@ -16,9 +16,9 @@ var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 // Create bot dialogs
-var Hotels = require('./hotels');
-var Flights = require ('./flights');
-var Support = require ('./support');
+var Hotels = require('./hotels.js');
+var Flights = require ('./flights.js');
+var Support = require ('./support.js');
 
 bot.dialog('/flights', Flights.Dialog);
 bot.dialog('/hotels', Hotels.Dailog);
