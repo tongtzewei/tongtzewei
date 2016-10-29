@@ -44,7 +44,7 @@ bot.dialog('/', new builder.IntentDialog()
                     ["Hotels", "Flights"],
                 {
                     maxRetries : 3,
-                    retryPrompt: 'Not a valid optionn'
+                    retryPrompt: 'Not a valid option'
                 });
         },
         function(session, result){
@@ -68,7 +68,3 @@ bot.dialog('/', new builder.IntentDialog()
         }
     ]));
     
-server.get('/', restify.serveStatic({
-directory: __dirname,
-default: '/index.html'
-}));
