@@ -22,7 +22,7 @@ var Support = require ('./support');
 
 bot.dialog('/flights', Flights.Dialog);
 bot.dialog('/hotels', Hotels.Dailog);
-bot.dialog('./support', Support.Dialog);
+bot.dialog('/support', Support.Dialog);
 
 bot.dialog('/', new builder.IntentDialog()
     .matchesAny([/help/i, /support/i, /problem/i],[
