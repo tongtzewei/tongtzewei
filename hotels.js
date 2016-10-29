@@ -42,9 +42,9 @@ module.exports = {
 
         function (session, results, next) {
 
-            session.dialogData.checkIn = results.response.resolution.start;
-
-            next();
+ //           session.dialogData.checkIn = results.response.resolution.start;
+                session.dialogData.checkIn = builder.EntityRecognizer.resolveTime([results.response]);
+                next();
 
         },
 
