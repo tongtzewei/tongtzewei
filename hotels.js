@@ -107,11 +107,7 @@ module.exports = {
 
 
 
-                    var message = new builder.Message()
-
-                        .attachmentLayout(builder.AttachmentLayout.carousel)
-
-                        .attachments(hotels.map(hotelAsAttachment));
+ var message = new builder.Message().attachmentLayout(builder.AttachmentLayout.carousel).attachments(hotels.map(hotelAsAttachment));
 
 
 
