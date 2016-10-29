@@ -74,7 +74,8 @@ module.exports = {
 
             var destination = session.dialogData.destination;
 
-            var checkIn = new Date(session.dialogData.checkIn);
+ //           var checkIn = new Date(session.dialogData.checkIn);
+                var checkIn = session.dialogData.checkIn;
 
             var checkOut = checkIn.addDays(session.dialogData.nights);
 
