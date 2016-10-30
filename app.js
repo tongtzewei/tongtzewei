@@ -53,7 +53,7 @@ dialog.matches('builtin.intent.weather.check_weather', [
  //       }
 
         if (!locationEntity) {
-            builder.Prompts.text(sesson, "what is the location?")
+            builder.Prompts.text(session, "what is the location?")
         } else {
             next ()
         }
