@@ -52,7 +52,7 @@ dialog.matches('builtin.intent.weather.check_weather', [
  //           builder.Prompts.text(session, 'What location?');
  //       }
 
-        if (!locationEntithy) {
+        if (!locationEntity) {
             builder.Prompts.text(sesson, "what is the location?")
         } else {
             next ()
