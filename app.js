@@ -41,9 +41,9 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
 // Setup dialogs
 
-bot.add('/', dialog);
+bot.dialog('/', dialog);
 
-dialog.on('builtin.intent.weather.check_weather', [
+dialog.matches('builtin.intent.weather.check_weather', [
     (session, args, next) => {
         var locationEntity = builder.EntityRecognizer.findEntity(args.entities, 'builtin.weather.absolute_location');
         if (locationEntity) {
