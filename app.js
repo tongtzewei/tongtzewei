@@ -36,14 +36,14 @@ server.post('/api/messages', connector.listen());
 
 var model = 'https://api.projectoxford.ai/luis/v1/application?id=c413b2ef-382c-45bd-8ff0-f76d60e2a821&subscription-key=038f05bb382d430da46ee166432e0432&q=';
 var recognizer = new builder.LuisRecognizer(model);
-var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
+var dialog1 = new builder.IntentDialog({ recognizers: [recognizer] });
 
 
 // Setup dialogs
 
-bot.dialog('/', dialog);
+bot.dialog('/', dialog1);
 
-dialog.matches('builtin.intent.weather.check_weather', [
+dialog1.matches('builtin.intent.weather.check_weather', [
     function (session, args, next) {
         var locationEntity = builder.EntityRecognizer.findEntity(args.entities, 'builtin.weather.absolute_location');
  //       if (locationEntity) {
@@ -67,4 +67,4 @@ dialog.matches('builtin.intent.weather.check_weather', [
     }
 ]);
 
-dialog.onDefault(builder.DialogAction.send("I don't understand."));
+dialog1.onDefault(builder.DialogAction.send("I don't understand."));
