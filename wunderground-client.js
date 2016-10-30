@@ -4,7 +4,7 @@ var wundergroundClient = restify.createJsonClient({ url: 'http://api.wundergroun
 
 function getCurrentWeather(location, callback) {
     var escapedLocation = location.replace(/\W+/, '_');
-    wundergroundClient.get(`/api/KEY/conditions/q/${escapedLocation}.json`, (err, req, res, obj) => {
+    wundergroundClient.get(`/api/ffc1666666f6af0fa9/conditions/q/${escapedLocation}.json`, (err, req, res, obj) => {
         console.log(obj);
         var observation = obj.current_observation;
         var results = obj.response.results;
