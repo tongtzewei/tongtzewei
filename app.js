@@ -46,11 +46,19 @@ bot.dialog('/', dialog);
 dialog.matches('builtin.intent.weather.check_weather', [
     function (session, args, next) {
         var locationEntity = builder.EntityRecognizer.findEntity(args.entities, 'builtin.weather.absolute_location');
-        if (locationEntity) {
-            return next({ response: locationEntity.entity });
+ //       if (locationEntity) {
+ //           return next({ response: locationEntity.entity });
+ //       } else {
+ //           builder.Prompts.text(session, 'What location?');
+ //       }
+
+        if (!locationEntithy) {
+            builder.Prompts.text(sesson, "what is the location?")
         } else {
-            builder.Prompts.text(session, 'What location?');
+            next ()
         }
+
+
     },
     function (session, results) {
         weatherClient.getCurrentWeather(results.response, (responseString) => {
