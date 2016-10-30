@@ -2,7 +2,7 @@ var builder = require('botbuilder');
 
 var restify = require('restify');
 
-
+var weatherClient = require('./wunderground-client');
 
 // Setup Restify Server
 
@@ -34,114 +34,30 @@ server.post('/api/messages', connector.listen());
 
 // Dialogs
 
-var Hotels = require('./hotels');
-
-var Flights = require('./flights');
-
-var Support = require('./support');
-
+var model = 'https://api.projectoxford.ai/luis/v1/application?id=c413b2ef-382c-45bd-8ff0-f76d60e2a821&subscription-key=038f05bb382d430da46ee166432e0432&q=';
+var recognizer = new builder.LuisRecognizer(model);
+var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
 
 // Setup dialogs
 
-bot.dialog('/flights', Flights.Dialog);
+bot.dialog('/', dialog)
 
-bot.dialog('/hotels', Hotels.Dialog);
-
-bot.dialog('/support', Support.Dialog);
-
-
-
-// Root dialog
-
-bot.dialog('/', new builder.IntentDialog()
-
-    .matchesAny([/help/i, /support/i, /problem/i], [
-
-        function (session) {
-
-            session.beginDialog('/support');
-
-        },
-
-        function (session, result) {
-
-            var tickerNumber = result.response;
-
-            session.send('Thanks for contacting our support team. Your ticket number is %s.', tickerNumber);
-
-            session.endDialog();
-
+dialog.matches('builtin.intent.weather.check_weather', [
+   function (session, args, next) {
+        var locationEntity = builder.EntityRecognizer.findEntity(args.entities, 'builtin.weather.absolute_location');
+        if (!locationEntity) {
+            builder.Prompts.text(session, 'What is your location?');
+        } else {
+            next();
         }
+    },
+    
+    function (session, results) {
+        weatherClient.getCurrentWeather(results.response, 
+        function (responseString) {
+        session.send(responseString);
+        });
+    }
+]);
 
-    ])
-
-    .onDefault([
-
-        function (session) {
-
-            // prompt for search option
-
-            builder.Prompts.choice(
-
-                session,
-
-                'Are you looking for a flight or a hotel?',
-
-                [Flights.Label, Hotels.Label],
-
-                {
-
-                    maxRetries: 3,
-
-                    retryPrompt: 'Not a valid option'
-
-                });
-
-        },
-
-        function (session, result) {
-
-            if (!result.response) {
-
-                // exhausted attemps and no selection, start over
-
-                session.send('Ooops! Too many attemps :( But don\'t worry, I\'m handling that exception and you can try again!');
-
-                return session.endDialog();
-
-            }
-
-
-
-            // on error, start over
-
-            session.on('error', function (err) {
-
-                session.send('Failed with message: %s', err.message);
-
-                session.endDialog();
-
-            });
-
-
-
-            // continue on proper dialog
-
-            var selection = result.response.entity;
-
-            switch (selection) {
-
-                case Flights.Label:
-
-                    return session.beginDialog('/flights')
-
-                case Hotels.Label:
-
-                    return session.beginDialog('/hotels')
-
-            }
-
-        }
-
-    ]));
