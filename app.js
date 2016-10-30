@@ -41,23 +41,22 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 
 // Setup dialogs
 
-bot.dialog('/', dialog)
+bot.add('/', dialog);
 
-dialog.matches('builtin.intent.weather.check_weather', [
-   function (session, args, next) {
+dialog.on('builtin.intent.weather.check_weather', [
+    (session, args, next) => {
         var locationEntity = builder.EntityRecognizer.findEntity(args.entities, 'builtin.weather.absolute_location');
-        if (!locationEntity) {
-            builder.Prompts.text(session, 'What is your location?');
+        if (locationEntity) {
+            return next({ response: locationEntity.entity });
         } else {
-            next();
+            builder.Prompts.text(session, 'What location?');
         }
     },
-    
-    function (session, results) {
-        weatherClient.getCurrentWeather(results.response, 
-        function (responseString) {
-        session.send(responseString);
+    (session, results) => {
+        weatherClient.getCurrentWeather(results.response, (responseString) => {
+            session.send(responseString);
         });
     }
 ]);
 
+dialog.onDefault(builder.DialogAction.send("I don't understand."));
